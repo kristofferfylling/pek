@@ -7,7 +7,7 @@
 
   if (location.hash === "#team") {
     state.role = "team";
-    state.screen = "team-inbox";
+    state.screen = "team-setup";
     store.save();
   }
 
@@ -52,6 +52,24 @@
 
   function frameLabel(id) {
     return cfg.figma.frames.find((f) => f.id === id)?.label || id;
+  }
+
+  /** Konverterer Figma design/proto/file-lenke til embed-URL */
+  function figmaUrlToEmbed(input) {
+    const raw = (input || "").trim();
+    if (!raw) return "";
+    if (raw.includes("figma.com/embed")) return raw;
+    try {
+      const u = new URL(raw);
+      if (!u.hostname.includes("figma.com")) return "";
+      return `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(u.href)}`;
+    } catch {
+      return "";
+    }
+  }
+
+  function activeFigmaEmbedSrc() {
+    return state.figmaEmbedUrl || cfg.figma.embedUrl;
   }
 
   function surfaceLabel(surface, frameId) {
@@ -220,10 +238,11 @@
 
   function renderFigmaSurface() {
     const frame = state.activeFigmaFrame;
-    const useEmbed = state.figmaMode === "embed" && cfg.figma.useEmbed;
+    const embedSrc = state.figmaEmbedUrl;
+    const useEmbed = !!embedSrc;
     const inner = useEmbed
-      ? `<iframe src="${cfg.figma.embedUrl}" title="Figma prototype" loading="lazy"></iframe>`
-      : renderFigmaMock(frame);
+      ? `<iframe src="${esc(embedSrc)}" title="Figma prototype" loading="lazy" allowfullscreen></iframe>`
+      : `<div class="pek-figma-empty"><i class="ti ti-brand-figma"></i><p>Figma er ikke koblet ennå</p><p class="muted">TRY-teamet legger inn prototype-lenken i prosjektinnstillingene.</p></div>`;
     return `<div class="pek-figma-wrap${state.figmaExplore ? " explore" : ""}" data-surface-click="1">${inner}
       <div class="pek-click-layer"></div>
       <div class="pek-pin-layer">${renderPins()}</div>${renderComposer()}</div>`;
@@ -234,20 +253,23 @@
       <div class="pek-pin-layer">${renderPins()}</div>${renderComposer()}</div>`;
   }
 
-  function renderViewer() {
+  function renderViewer(teamPreview) {
     const count = store.threadsForSurface(state.activeSurface, state.activeSurface === "figma" ? state.activeFigmaFrame : null).length;
     const url = state.activeSurface === "staging"
       ? `${cfg.publicPath} → ${cfg.staging.targetHost}/`
       : `${cfg.publicPath}?source=figma&frame=${state.activeFigmaFrame}`;
-    const frameTabs = state.activeSurface === "figma"
+    const frameTabs = state.activeSurface === "figma" && !state.figmaEmbedUrl
       ? `<div class="pek-frame-tabs">${cfg.figma.frames.map((f) =>
           `<button type="button" data-action="set-frame" data-frame="${f.id}" class="${f.id === state.activeFigmaFrame ? "active" : ""}">${esc(f.label.split("·")[1]?.trim() || f.label)}</button>`
-        ).join("")}<button type="button" class="${state.figmaMode === "embed" ? "active" : ""}" data-action="figma-embed" title="Ekte Figma">Embed</button>
-        <button type="button" class="${state.figmaMode === "mock" ? "active" : ""}" data-action="figma-mock">Mock</button></div>`
+        ).join("")}</div>`
+      : "";
+    const previewBanner = teamPreview
+      ? `<div class="pek-team-preview-banner"><span>Forhåndsvisning · slik kunden ser det</span><button type="button" data-action="team-setup">Tilbake til innstillinger</button></div>`
       : "";
     return `<div class="pek-shell">
+      ${previewBanner}
       <div class="pek-topbar">
-        <button type="button" class="pek-back" data-action="go-inbox"><i class="ti ti-inbox"></i> Innboks${store.unreadCount() ? ` (${store.unreadCount()})` : ""}</button>
+        <button type="button" class="pek-back" data-action="${teamPreview ? "team-setup" : "go-inbox"}"><i class="ti ti-${teamPreview ? "settings" : "inbox"}"></i> ${teamPreview ? "Innstillinger" : `Innboks${store.unreadCount() ? ` (${store.unreadCount()})` : ""}`}</button>
         <span class="spacer"></span><span class="muted">${esc(state.userName)}</span><span class="pek-avatar">${initials(state.userName)}</span>
       </div>
       <div class="pek-surface-tabs">
@@ -272,6 +294,39 @@
         </div>` : `<button type="button" class="pek-toolbar-pill" data-action="toggle-figma-explore">${state.figmaExplore ? "Kommentarmodus" : "Utforsk Figma"}</button>`}
       </div>
     </div>`;
+  }
+
+  function renderTeamSetup() {
+    const linked = !!state.figmaEmbedUrl;
+    return `<div class="pek-shell pek-team-setup">
+      <div class="pek-topbar">
+        <span class="pek-logo"><i class="ti ti-settings"></i></span>
+        <span style="font-weight:500">${esc(cfg.title)}</span>
+        <span class="muted">TRY · Prosjektinnstillinger</span>
+        <span class="spacer"></span>
+        <button type="button" data-action="team-inbox">Innboks${state.threads.length ? ` (${state.threads.length})` : ""}</button>
+      </div>
+      <div class="pek-team-setup-body">
+        <section class="pek-setup-card">
+          <h3><i class="ti ti-brand-figma"></i> Figma-prototype</h3>
+          <p>Lim inn lenken fra Figma (Share → Copy link). Kundene ser prototypen når de bytter til <strong>Figma</strong>-fanen.</p>
+          <div class="pek-figma-paste pek-figma-paste--setup">
+            <input type="url" id="pek-figma-url" placeholder="https://www.figma.com/design/… eller /proto/…" value="${esc(state.figmaInputUrl)}">
+            <button type="button" data-action="apply-figma-url">Lagre</button>
+          </div>
+          <p class="pek-figma-paste-hint">Filen må være delbar · «Anyone with the link can view»</p>
+          <p class="pek-setup-status ${linked ? "ok" : ""}">${linked ? `<i class="ti ti-check"></i> Koblet til Figma` : "Ikke koblet — kunden ser en tom Figma-flate"}</p>
+          ${linked ? `<button type="button" class="pek-setup-link" data-action="clear-figma-url">Fjern lenke</button>` : ""}
+        </section>
+        <section class="pek-setup-card muted-card">
+          <h3><i class="ti ti-world"></i> Staging</h3>
+          <p><code>${esc(cfg.staging.targetHost)}</code> — i produktet kobles staging via proxy når TRY publiserer prosjektet.</p>
+        </section>
+        <div class="pek-setup-actions">
+          <button type="button" class="primary" data-action="team-preview" ${linked ? "" : "disabled"}>Forhåndsvis kundevisning</button>
+          <p class="muted" style="font-size:11px;margin:8px 0 0">Invitasjonslenke: <code>${esc(cfg.publicPath)}</code></p>
+        </div>
+      </div></div>`;
   }
 
   function renderLanding() {
@@ -309,8 +364,9 @@
   function renderInbox(team) {
     const threads = state.threads;
     return `<div class="pek-shell"><div class="pek-topbar">
-        <button type="button" class="pek-back" data-action="${team ? "team-inbox" : "viewer"}"><i class="ti ti-arrow-left"></i></button>
-        <span style="font-weight:500">${esc(cfg.title)}</span>
+        <button type="button" class="pek-back" data-action="${team ? "team-setup" : "viewer"}"><i class="ti ti-arrow-left"></i></button>
+        <span style="font-weight:500">${team ? "Innboks" : esc(cfg.title)}</span>
+        ${team ? `<span class="spacer"></span><button type="button" data-action="team-setup"><i class="ti ti-settings"></i> Innstillinger</button>` : ""}
       </div>
       <div class="pek-inbox-list">${!threads.length ? `<div class="pek-empty"><p>Ingen kommentarer.</p><button data-action="viewer">Til visning</button></div>` : ""}
       ${threads.map((t) => {
@@ -368,7 +424,7 @@
   function renderDemoBar() {
     return `<div class="pek-demo-bar"><strong>Pek demo v2</strong><span class="muted">Staging + Figma</span><span class="spacer"></span>
       <button type="button" data-action="role-customer">Kunde</button>
-      <button type="button" data-action="role-team">TRY</button>
+      <button type="button" data-action="role-team">TRY · Innstillinger</button>
       <button type="button" data-action="simulate-reply">Simuler svar</button>
       <button type="button" class="primary" data-action="reset">Nullstill</button></div>`;
   }
@@ -378,7 +434,10 @@
     if (!root) return;
     let main;
     if (state.role === "team") {
-      main = state.screen === "team-thread" && state.activeThreadId ? renderThread(true) : renderInbox(true);
+      if (state.screen === "viewer") main = renderViewer(true);
+      else if (state.screen === "team-thread" && state.activeThreadId) main = renderThread(true);
+      else if (state.screen === "team-inbox") main = renderInbox(true);
+      else main = renderTeamSetup();
     } else if (!state.userName || state.screen === "landing") main = renderLanding();
     else if (state.screen === "coach") main = renderCoach();
     else if (state.screen === "inbox") main = renderInbox(false);
@@ -393,6 +452,9 @@
     document.querySelectorAll("[data-surface-click]").forEach((el) => el.addEventListener("click", onSurfaceClick));
     document.getElementById("pek-name")?.addEventListener("keydown", (e) => {
       if (e.key === "Enter") enterProject(e.target.value);
+    });
+    document.getElementById("pek-figma-url")?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") document.querySelector("[data-action='apply-figma-url']")?.click();
     });
     document.querySelector(".pek-composer textarea")?.addEventListener("input", (e) => {
       if (state.composer) state.composer.text = e.target.value;
@@ -431,8 +493,32 @@
     }
     if (a === "set-surface") { set({ activeSurface: el.dataset.surface, composer: null }); render(); return; }
     if (a === "set-frame") { set({ activeFigmaFrame: el.dataset.frame, composer: null }); render(); return; }
-    if (a === "figma-embed") { set({ figmaMode: "embed", figmaExplore: false }); render(); return; }
-    if (a === "figma-mock") { set({ figmaMode: "mock" }); render(); return; }
+    if (a === "apply-figma-url") {
+      const input = document.getElementById("pek-figma-url")?.value || "";
+      const embed = figmaUrlToEmbed(input);
+      if (!embed) {
+        set({ figmaInputUrl: input, toast: "Ugyldig Figma-lenke — bruk design eller proto-URL" });
+        render();
+        return;
+      }
+      set({
+        figmaInputUrl: input,
+        figmaEmbedUrl: embed,
+        figmaMode: "embed",
+        figmaExplore: false,
+        toast: "Figma-lenke lagret",
+        screen: state.role === "team" ? "team-setup" : state.screen,
+      });
+      render();
+      return;
+    }
+    if (a === "clear-figma-url") {
+      set({ figmaInputUrl: "", figmaEmbedUrl: "", figmaMode: "mock", toast: "Figma-lenke fjernet" });
+      render();
+      return;
+    }
+    if (a === "team-preview") { navigate("viewer"); return; }
+    if (a === "team-setup") { navigate("team-setup"); return; }
     if (a === "toggle-figma-explore") { set({ figmaExplore: !state.figmaExplore, composer: null }); render(); return; }
     if (a === "device-desktop") { set({ device: "desktop" }); render(); return; }
     if (a === "device-mobile") { set({ device: "mobile" }); render(); return; }
@@ -440,7 +526,7 @@
     if (a === "viewer") { navigate("viewer"); return; }
     if (a === "open-thread") { navigate(state.role === "team" ? "team-thread" : "thread", id); return; }
     if (a === "role-customer") { set({ role: "customer", screen: state.userName ? "viewer" : "landing" }); render(); return; }
-    if (a === "role-team") { set({ role: "team", screen: "team-inbox" }); render(); return; }
+    if (a === "role-team") { set({ role: "team", screen: "team-setup" }); render(); return; }
     if (a === "simulate-reply") { simulateReply(); return; }
     if (a === "reset") { if (confirm("Nullstille?")) { store.reset(); state = store.get(); render(); } return; }
     if (a === "team-inbox") { navigate("team-inbox"); return; }

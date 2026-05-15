@@ -13,6 +13,8 @@ window.PekStore = (function () {
       activeFigmaFrame: cfg.figma.frames[0].id,
       figmaMode: "mock",
       figmaExplore: false,
+      figmaInputUrl: "",
+      figmaEmbedUrl: "",
       device: "desktop",
       eyebrow: "NYHET",
       threads: [],

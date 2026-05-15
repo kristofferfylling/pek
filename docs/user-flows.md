@@ -41,6 +41,8 @@ Bakgrunnen viser allerede den oppdaterte siden – f.eks. "NY MODELL" der det f�
 
 **Tråd-detalj.** Original kommentar + svar + system-events ("NYHET → NY MODELL på forsiden, i går"). Composer for å svare. "Bra"-reaksjon for "thanks!" uten støy.
 
+**Fagord i TRYs svar.** Hvis Kristoffer skriver «Trenger vi eyebrow her?», vises *eyebrow* med stiplet understrek. Stine trykker → liten popover med AI-forklaring knyttet til det hun faktisk ser på siden (ikke en generell design-ordbok). Hun kan lese og fortsette uten å spørre «hva mener dere med…?» på epost.
+
 **Avklaring.** Når TRY trenger presisering ("hvilken knapp mente du?"), sender vi henne tilbake til det visuelle laget. Klikk "Denne"-tag ved riktig element. Ingen tekstskjema.
 
 ## TRYs flater
