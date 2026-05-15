@@ -8,7 +8,7 @@ Et kommentarverktøy for å samle kundefeedback ett sted – på staging-lenker 
 
 **Repo:** [github.com/kristofferfylling/pek](https://github.com/kristofferfylling/pek)
 
-**Live prototyper:** [kristofferfylling.github.io/pek](https://kristofferfylling.github.io/pek) (GitHub Pages, deployes fra `main`)
+**Live demo:** [kristofferfylling.github.io/pek/demo](https://kristofferfylling.github.io/pek/demo/) · **Statiske prototyper:** [kristofferfylling.github.io/pek/prototypes](https://kristofferfylling.github.io/pek/prototypes/)
 
 ---
 
@@ -36,7 +36,8 @@ Resultatet er at vi enten mister kontekst eller bruker tid på å samle den i et
 | [`docs/user-flows.md`](docs/user-flows.md) | Kundens og TRYs flater, tilstand for tilstand |
 | [`docs/mvp-scope.md`](docs/mvp-scope.md) | Hva som er Lag 1 / 2 / 3, og hva som er senere |
 | [`docs/open-questions.md`](docs/open-questions.md) | Åpne valg vi ikke har tatt ennå |
-| [`prototypes/`](prototypes/) | Klikkbare HTML-prototyper for tre nøkkelflater |
+| [`demo/`](demo/) | **Interaktiv prototype** – klikk-pins, innboks, kunde/TRY, localStorage |
+| [`prototypes/`](prototypes/) | Statiske HTML-skisser for tre nøkkelflater |
 
 ## Prototyper
 
