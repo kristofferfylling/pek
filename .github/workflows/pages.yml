@@ -5,7 +5,6 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# peaceiris publiserer til gh-pages-branchen (krever ikke at Pages allerede er satt til "GitHub Actions")
 permissions:
   contents: write
 
@@ -19,9 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to gh-pages branch
+      - name: Publish to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: .
-          exclude_assets: ".github,.git"
