@@ -6,6 +6,7 @@
     userName: "", coachSeen: false, device: "desktop", eyebrow: "NYHET",
     threads: [], welcomeDismissed: false, visitCount: 0,
     screen: "landing", role: "customer", activeThreadId: null, composer: null, toast: null,
+    termPopover: null,
   });
 
   let state = loadState();
@@ -25,7 +26,7 @@
   function resolvedChangeCount() { return state.threads.filter(t => t.changeApplied).length; }
 
   function navigate(screen, threadId) {
-    state.screen = screen; state.activeThreadId = threadId || null; state.composer = null;
+    state.screen = screen; state.activeThreadId = threadId || null; state.composer = null; state.termPopover = null;
     saveState(); render();
   }
   function setRole(role) {
@@ -81,6 +82,69 @@
   function statusLabel(s) {
     return ({ open: { label: "Åpen", cls: "warning" }, in_progress: { label: "I arbeid", cls: "info" }, resolved: { label: "Løst", cls: "success" } })[s] || { label: "Åpen", cls: "warning" };
   }
+  const JARGON = [
+    { re: /\beyebrow\b/gi, key: "eyebrow" },
+    { re: /\bhero\b/gi, key: "hero" },
+    { re: /\bCTA\b/g, key: "cta" },
+    { re: /\bcta\b/g, key: "cta" },
+  ];
+
+  function explainTerm(key, thread) {
+    const label = state.eyebrow;
+    const pin = thread?.pin || "elementet på siden";
+    const page = thread?.page || "Forsiden";
+    const map = {
+      eyebrow: `Eyebrow er den lille tekstlinjen over hovedoverskriften — «øyet» over tittelen. På ${page} er det «${label}»-merket (${pin}). I UI-språk brukes det ikke om bokstavelige øyenbryn.`,
+      hero: `Hero er toppseksjonen — det første man ser når siden laster. Her: Wilfa-header, ${label}, og overskriften under.`,
+      cta: `CTA (call to action) er det som skal få brukeren til å gjøre noe — f.eks. «Les mer» eller «Kjøp nå».`,
+    };
+    return map[key] || `Faguttrykk brukt i en kommentar på denne siden.`;
+  }
+
+  function linkJargon(text, forCustomer, threadId) {
+    if (!forCustomer) return esc(text);
+    let html = esc(text);
+    JARGON.forEach(({ re, key }) => {
+      html = html.replace(re, (match) =>
+        `<button type="button" class="pek-jargon-term" data-action="explain-term" data-term="${key}" data-thread-id="${threadId || ""}">${match}</button>`
+      );
+    });
+    return html;
+  }
+
+  function renderTermPopover() {
+    if (!state.termPopover) return "";
+    const thread = threadById(state.termPopover.threadId);
+    const term = state.termPopover.term;
+    const title = term === "eyebrow" ? "Eyebrow" : term === "hero" ? "Hero" : term.toUpperCase();
+    return `
+      <div class="pek-term-backdrop" data-action="close-term"></div>
+      <div class="pek-term-popover" style="left:${state.termPopover.x}px;top:${state.termPopover.y}px">
+        <button type="button" class="close" data-action="close-term" aria-label="Lukk">×</button>
+        <p class="label"><i class="ti ti-sparkles"></i> Forklaring (demo-AI)</p>
+        <p><strong>${esc(title)}</strong> — ${esc(explainTerm(term, thread))}</p>
+        <p class="note">I produktet genereres dette fra kontekst (pin, side, screenshot).</p>
+      </div>`;
+  }
+
+  function openTermPopover(term, threadId, el) {
+    const rect = el.getBoundingClientRect();
+    state.termPopover = {
+      term,
+      threadId,
+      x: Math.min(rect.left, window.innerWidth - 320),
+      y: rect.bottom + 8,
+    };
+    saveState();
+    render();
+  }
+
+  function closeTermPopover() {
+    state.termPopover = null;
+    saveState();
+    render();
+  }
+
   function onStagingClick(e) {
     if (state.role !== "customer") return;
     if (e.target.closest(".pek-toolbar, .pek-composer, .pek-pin-layer button, .pek-welcome-card, .pek-coach-overlay")) return;
@@ -167,7 +231,7 @@
     return `<div class="pek-shell"><div class="pek-topbar"><button type="button" class="pek-back" data-action="${team ? "team-inbox" : "staging"}"><i class="ti ti-arrow-left"></i></button><span style="font-weight:500">${esc(PROJECT.title)}</span><span class="muted">· ${title}</span></div>
       <div class="pek-inbox-list">${!threads.length ? `<div class="pek-empty"><p>Ingen kommentarer ennå.</p><button type="button" data-action="staging" style="margin-top:12px">Til staging</button></div>` : ""}
       ${threads.map((t, i) => { const st = statusLabel(t.status); const last = t.replies[t.replies.length - 1];
-        return `<div class="pek-inbox-item${t.hasUnread ? " highlight" : ""}" data-action="open-thread" data-id="${t.id}"><span class="pin" style="width:22px;height:22px;font-size:11px">${i+1}</span><div class="content"><div style="display:flex;gap:6px;margin-bottom:4px"><span style="font-size:12px">${team ? esc(t.author) : "Du"} · ${esc(t.pin)}</span><span class="pek-badge ${st.cls}" style="margin-left:auto">${st.label}</span></div><p style="font-size:12px;margin:0">${esc(t.text)}</p>${last && !team ? `<div class="pek-reply-bubble"><strong>${esc(last.author)}</strong> · ${esc(last.text)}</div>` : ""}${t.changeApplied ? `<span class="pek-badge success" style="margin-top:6px;display:inline-block"><i class="ti ti-check"></i> Endret</span>` : ""}</div></div>`; }).join("")}
+        return `<div class="pek-inbox-item${t.hasUnread ? " highlight" : ""}" data-action="open-thread" data-id="${t.id}"><span class="pin" style="width:22px;height:22px;font-size:11px">${i+1}</span><div class="content"><div style="display:flex;gap:6px;margin-bottom:4px"><span style="font-size:12px">${team ? esc(t.author) : "Du"} · ${esc(t.pin)}</span><span class="pek-badge ${st.cls}" style="margin-left:auto">${st.label}</span></div><p style="font-size:12px;margin:0">${linkJargon(t.text, !team, t.id)}</p>${last && !team ? `<div class="pek-reply-bubble"><strong>${esc(last.author)}</strong> · ${linkJargon(last.text, true, t.id)}</div>` : ""}${t.changeApplied ? `<span class="pek-badge success" style="margin-top:6px;display:inline-block"><i class="ti ti-check"></i> Endret</span>` : ""}</div></div>`; }).join("")}
       </div></div>`;
   }
 
@@ -179,7 +243,7 @@
     const idx = state.threads.indexOf(t) + 1;
     const replies = t.replies.map(r => r.role === "intern"
       ? `<div class="pek-internal-note"><p style="margin:0;font-size:10px;color:#854f0b;font-weight:500"><i class="ti ti-lock"></i> INTERN</p><p style="margin:6px 0 0"><strong>${esc(r.author)}:</strong> ${esc(r.text)}</p></div>`
-      : `<div style="display:flex;gap:10px;margin:12px 0"><span class="pek-avatar" style="background:#d3d1c7;color:#5f5e5a">K</span><div><p style="margin:0 0 4px;font-size:12px"><strong>${esc(r.author)}</strong></p><p style="margin:0;font-size:13px">${esc(r.text)}</p></div></div>`).join("");
+      : `<div style="display:flex;gap:10px;margin:12px 0"><span class="pek-avatar" style="background:#d3d1c7;color:#5f5e5a">K</span><div><p style="margin:0 0 4px;font-size:12px"><strong>${esc(r.author)}</strong></p><p style="margin:0;font-size:13px">${linkJargon(r.text, !team, t.id)}</p></div></div>`).join("");
     const events = t.events.map(e => `<div class="pek-event"><i class="ti ti-history"></i> ${esc(e.text)}</div>`).join("");
 
     if (team) {
@@ -190,7 +254,7 @@
         <div class="pek-thread-sidebar"><label>Status</label><select data-action="status-select" data-id="${t.id}"><option value="open"${t.status==="open"?" selected":""}>Åpen</option><option value="in_progress"${t.status==="in_progress"?" selected":""}>I arbeid</option><option value="resolved"${t.status==="resolved"?" selected":""}>Løst</option></select><button type="button" disabled style="width:100%">→ Linear (Lag 2)</button></div></div></div>`;
     }
     return `<div class="pek-shell"><div class="pek-topbar"><button type="button" class="pek-back" data-action="go-inbox"><i class="ti ti-arrow-left"></i> Innboks</button><span style="font-weight:500">${esc(t.pin)}</span></div>
-      <div style="padding:16px"><div style="display:flex;gap:10px;margin-bottom:12px"><span class="pek-avatar">${initials(t.author)}</span><div><p style="margin:0;font-size:13px">${esc(t.text)}</p></div></div>${events}${replies}</div></div>`;
+      <div style="padding:16px"><div style="display:flex;gap:10px;margin-bottom:12px"><span class="pek-avatar">${initials(t.author)}</span><div><p style="margin:0;font-size:13px">${linkJargon(t.text, true, t.id)}</p></div></div>${events}${replies}</div></div>`;
   }
 
   function render() {
@@ -210,7 +274,7 @@
     } else {
       main = renderStaging();
     }
-    root.innerHTML = renderDemoBar() + main;
+    root.innerHTML = renderDemoBar() + main + renderTermPopover();
     bindEvents();
   }
 
@@ -234,6 +298,8 @@
     const el = e.target.closest("[data-action]");
     if (!el) return;
     const a = el.dataset.action, id = el.dataset.id;
+    if (a === "explain-term") { e.stopPropagation(); openTermPopover(el.dataset.term, el.dataset.threadId || state.activeThreadId, el); return; }
+    if (a === "close-term") { e.stopPropagation(); closeTermPopover(); return; }
     if (a === "enter") { enterProject(document.getElementById("pek-name")?.value || ""); return; }
     if (a === "finish-coach") { finishCoach(); return; }
     if (a === "cancel-composer") { state.composer = null; saveState(); render(); return; }
