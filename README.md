@@ -10,6 +10,8 @@ Et kommentarverktøy for å samle kundefeedback ett sted – på staging-lenker 
 
 **Live demo:** [kristofferfylling.github.io/pek/demo](https://kristofferfylling.github.io/pek/demo/) · **Statiske prototyper:** [kristofferfylling.github.io/pek/prototypes](https://kristofferfylling.github.io/pek/prototypes/)
 
+**GitHub Pages (engangsoppsett):** Gå til [Settings → Pages](https://github.com/kristofferfylling/pek/settings/pages) og velg **Deploy from a branch** → branch **`gh-pages`** → **`/ (root)`**. Workflowen oppretter `gh-pages` ved første vellykkede kjøring.
+
 ---
 
 ## Problemet
