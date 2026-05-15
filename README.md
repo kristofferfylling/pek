@@ -6,6 +6,10 @@ Et kommentarverktøy for å samle kundefeedback ett sted – på staging-lenker 
 
 **Eier:** TRY Dig. Bygges først for internt bruk, evaluering for TRY-huset etter MVP.
 
+**Repo:** [github.com/kristofferfylling/pek](https://github.com/kristofferfylling/pek)
+
+**Live prototyper:** [kristofferfylling.github.io/pek](https://kristofferfylling.github.io/pek) (GitHub Pages, deployes fra `main`)
+
 ---
 
 ## Problemet

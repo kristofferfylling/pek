@@ -28,7 +28,7 @@ TRY-rådgivers trådvisning. Tre tilstander:
 
 **Lokalt:** Klon repo, åpne hvilken som helst `index.html` i Chrome/Safari/Firefox.
 
-**Delt:** Push til GitHub Pages eller Vercel for å få lenker du kan dele med kollegaer.
+**Delt:** [kristofferfylling.github.io/pek/prototypes](https://kristofferfylling.github.io/pek/prototypes/) – oppdateres automatisk ved push til `main`.
 
 ## Hva de IKKE er
 
