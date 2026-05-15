@@ -1,30 +1,25 @@
-# Interaktiv Pek-demo
+# Pek · Interaktiv demo v2
 
-Klikkbar prototype av kjerneopplevelsen – ikke bare statiske skjermbilder.
+Full klikkbar prototype med **staging** og **Figma** — én innboks, samme datamodell.
 
-## Åpne lokalt
+**Åpne:** [kristofferfylling.github.io/pek/demo](https://kristofferfylling.github.io/pek/demo/) eller `demo/index.html` lokalt.
 
-```bash
-open demo/index.html
-```
+## Hva fungerer
 
-Eller via GitHub Pages: [kristofferfylling.github.io/pek/demo](https://kristofferfylling.github.io/pek/demo/)
+| Flate | Demo | Produkt (plan) |
+|-------|------|----------------|
+| **Staging** | Mock Wilfa-side + proxy-banner | Edge-proxy injiserer widget |
+| **Figma** | Mock mobilnav (A/B/C) + valgfri embed | iframe + postMessage-overlay |
+| **Kommentarer** | Klikk → pin → tråd | Samme modell |
+| **Fagord** | Stiplet understrek → AI-forklaring | Beslutning 013 |
+| **TRY** | Innboks, svar, status | Linear/Jira i Lag 2 |
 
-## Hva du kan teste
+## Testflyt
 
-1. **Landing** – skriv navn (lagres i localStorage)
-2. **Coach** – tre regler første gang
-3. **Staging** – klikk på Wilfa-siden → pin + kommentar
-4. **Innboks** – dine tråder og svar
-5. **TRY-visning** – bytt rolle, svar, endre status
-6. **Simuler TRY-svar** – endrer «NYHET» til «NY MODELL» og viser velkommen-tilbake-kort
+1. **Nullstill** → skriv navn → coach
+2. **Staging:** klikk på «NYHET» → skriv med «eyebrow»
+3. **Figma:** bytt flate → velg konsept → klikk og kommenter
+4. **TRY:** svar med fagord → **Kunde:** se stiplet understrek i tråd
+5. **Simuler svar** for returbesøk-demo på staging
 
-## Demo-kontroller (øverst)
-
-| Knapp | Effekt |
-|-------|--------|
-| Kunde / TRY | Bytt perspektiv |
-| Simuler TRY-svar | Legger til svar på første tråd |
-| Nullstill | Tømmer localStorage |
-
-Statiske skjermflyter ligger fortsatt i [`../prototypes/`](../prototypes/).
+Data lagres i `localStorage` (`pek-demo-v2`).
