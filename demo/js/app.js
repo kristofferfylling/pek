@@ -277,11 +277,15 @@
         <button type="button" data-action="set-surface" data-surface="figma" class="${state.activeSurface === "figma" ? "active" : ""}"><i class="ti ti-brand-figma"></i> Figma</button>
       </div>
       ${state.activeSurface === "staging" ? `<div class="pek-proxy-banner"><i class="ti ti-cloud"></i> ${esc(cfg.staging.proxyNote)}</div>` : ""}
-      <div class="pek-browser-chrome">
+      ${state.activeSurface === "figma" && !state.figmaEmbedUrl && !teamPreview
+        ? `<div class="pek-figma-setup-hint"><i class="ti ti-info-circle"></i> Figma-lenke legges inn av TRY i <button type="button" data-action="role-team">TRY · Innstillinger</button> — feltet under er bare kundelenke (kan ikke redigeres).</div>`
+        : ""}
+      <div class="pek-browser-chrome" aria-hidden="true">
         <span class="pek-browser-dot" style="background:#ff5f57"></span>
         <span class="pek-browser-dot" style="background:#febc2e"></span>
         <span class="pek-browser-dot" style="background:#28c840"></span>
-        <span class="pek-url-bar">${esc(url)}</span>
+        <span class="pek-url-label">Kundelenke</span>
+        <span class="pek-url-bar" title="Kun visning — lim inn Figma-lenke under TRY · Innstillinger">${esc(url)}</span>
       </div>
       ${frameTabs}
       <div class="pek-viewer-body">${state.activeSurface === "staging" ? renderStagingSurface() : renderFigmaSurface()}</div>

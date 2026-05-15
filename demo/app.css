@@ -121,10 +121,25 @@
   border-bottom: 0.5px solid var(--color-border-tertiary);
 }
 .pek-browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+.pek-url-label {
+  font-size: 9px; text-transform: uppercase; letter-spacing: 0.4px;
+  color: var(--color-text-tertiary); flex-shrink: 0;
+}
 .pek-url-bar {
-  flex: 1; background: var(--color-background-primary);
+  flex: 1; background: var(--color-background-tertiary);
   border-radius: 4px; padding: 3px 8px; font-size: 11px;
-  color: var(--color-text-secondary); font-family: var(--font-mono);
+  color: var(--color-text-tertiary); font-family: var(--font-mono);
+  cursor: default; user-select: text; pointer-events: none;
+}
+.pek-figma-setup-hint {
+  font-size: 11px; padding: 8px 12px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  background: var(--color-background-warning, #fff8e6);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+  color: var(--color-text-secondary);
+}
+.pek-figma-setup-hint button {
+  border: none; background: none; padding: 0; font: inherit; font-weight: 500;
+  text-decoration: underline; cursor: pointer; color: inherit;
 }
 
 .pek-viewer-body {
