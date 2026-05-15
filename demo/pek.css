@@ -574,20 +574,20 @@
 
 /* Fagord-forklaring (beslutning 013) */
 .pek-jargon-term {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  color: inherit;
+  display: inline;
   cursor: help;
-  border-bottom: 1.5px dotted var(--color-text-info);
-  text-decoration: none;
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--color-text-info);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .pek-jargon-term:hover {
   color: var(--color-text-info);
-  background: rgba(24, 95, 165, 0.06);
+  background: rgba(24, 95, 165, 0.08);
+  border-radius: 2px;
 }
 
 .pek-term-popover {

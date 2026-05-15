@@ -58,7 +58,7 @@
   function simulateTeamReply() {
     const thread = state.threads[0];
     if (!thread) { showToast("Legg inn en kommentar først (som kunde)"); return; }
-    thread.replies.push({ author: "Kristoffer", role: "TRY Dig", text: "Bra catch. Vi endret til «Ny modell» – se forsiden 👀" });
+    thread.replies.push({ author: "Kristoffer", role: "TRY Dig", text: "Bra catch — eyebrow er endret til «Ny modell». Se forsiden 👀" });
     thread.hasUnread = true; thread.status = "resolved"; thread.changeApplied = true;
     state.eyebrow = "NY MODELL";
     thread.events.push({ text: "NYHET → NY MODELL på forsiden" });
@@ -106,7 +106,7 @@
     let html = esc(text);
     JARGON.forEach(({ re, key }) => {
       html = html.replace(re, (match) =>
-        `<button type="button" class="pek-jargon-term" data-action="explain-term" data-term="${key}" data-thread-id="${threadId || ""}">${match}</button>`
+        `<span class="pek-jargon-term" role="button" tabindex="0" data-action="explain-term" data-term="${key}" data-thread-id="${threadId || ""}">${match}</span>`
       );
     });
     return html;
