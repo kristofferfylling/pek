@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pek · Kundens onboarding</title>
+<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+.coach-card { width: 340px; }
+.browser-chrome { background: var(--color-background-secondary); padding: 8px 12px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div class="pek-prototype">
+
+  <div class="pek-tabs">
+    <button class="pek-tab active" id="tab-1" onclick="showStep(1)">1. Landing</button>
+    <button class="pek-tab" id="tab-2" onclick="showStep(2)">2. Velkomst</button>
+    <button class="pek-tab" id="tab-3" onclick="showStep(3)">3. Første pin</button>
+    <button class="pek-tab" id="tab-4" onclick="showStep(4)">4. Sendt</button>
+  </div>
+
+  <!-- STEP 1 -->
+  <div id="view-1">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div style="padding: 14px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 10px;">
+        <div style="width: 26px; height: 26px; border-radius: 6px; background: var(--color-text-primary); display: flex; align-items: center; justify-content: center;">
+          <i class="ti ti-message-circle" style="font-size: 14px; color: var(--color-background-primary);"></i>
+        </div>
+        <span style="font-size: 13px; font-weight: 500;">Pek</span>
+        <span style="font-size: 11px; color: var(--color-text-tertiary); margin-left: auto;">av TRY Dig</span>
+      </div>
+      <div style="padding: 32px 28px; text-align: center;">
+        <div style="width: 56px; height: 56px; border-radius: 12px; background: var(--color-background-info); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px;">
+          <i class="ti ti-folder-open" style="font-size: 28px; color: var(--color-text-info);"></i>
+        </div>
+        <h3 style="font-size: 18px; margin: 0 0 6px; font-weight: 500;">Du er invitert til å se på Wilfa Shopify v3</h3>
+        <p style="font-size: 13px; color: var(--color-text-secondary); margin: 0 0 24px;">Kristoffer fra TRY Dig vil gjerne ha tilbakemeldingen din.</p>
+        <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 14px 16px; text-align: left; margin: 0 0 20px;">
+          <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 0 0 4px; letter-spacing: 0.5px;">DET DU SKAL SE PÅ</p>
+          <p style="font-size: 13px; margin: 0 0 8px;"><i class="ti ti-world" style="font-size: 13px; vertical-align: -1px; margin-right: 4px;"></i> Staging-versjon av forsiden og to produktsider</p>
+          <p style="font-size: 13px; margin: 0;"><i class="ti ti-brand-figma" style="font-size: 13px; vertical-align: -1px; margin-right: 4px;"></i> 3 nye konsepter for mobilnavigasjonen</p>
+        </div>
+        <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0 0 12px;">Skriv navnet ditt så vi vet hvem som har kommentert hva:</p>
+        <input type="text" placeholder="Navnet ditt" value="Stine Karlsen" style="width: 100%; margin-bottom: 10px; text-align: center;">
+        <button onclick="showStep(2)" style="width: 100%; background: var(--color-text-primary); color: var(--color-background-primary); border: none; border-radius: var(--border-radius-md); padding: 12px; font-size: 13px; font-weight: 500;">Gå inn</button>
+        <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 12px 0 0;"><i class="ti ti-lock" style="font-size: 11px; vertical-align: -1px;"></i> Ingen innlogging – bare deg og lenken</p>
+      </div>
+    </div>
+    <p class="pek-note">Navn lagres i localStorage. Neste gang Stine åpner lenken er hun allerede gjenkjent.</p>
+  </div>
+
+  <!-- STEP 2 -->
+  <div id="view-2" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden; position: relative;">
+      <div class="browser-chrome">
+        <div style="display: flex; gap: 4px;">
+          <span class="browser-dot" style="background: #FF5F57;"></span>
+          <span class="browser-dot" style="background: #FEBC2E;"></span>
+          <span class="browser-dot" style="background: #28C840;"></span>
+        </div>
+        <div style="flex: 1; background: var(--color-background-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--color-text-secondary);">feedback.try.no/p/wilfa-v3</div>
+      </div>
+      <div style="position: relative; height: 380px; background: #FAF8F3; overflow: hidden;">
+        <div style="background: #1A2E2A; color: #E8DCC4; padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;">
+          <span style="font-weight: 500; font-size: 13px; letter-spacing: 0.5px;">WILFA</span>
+          <div style="display: flex; gap: 14px; font-size: 11px;"><span>Produkter</span><span>Inspirasjon</span><span>Support</span></div>
+        </div>
+        <div style="padding: 24px 20px;">
+          <p style="font-size: 10px; color: #BA7517; letter-spacing: 1.5px; margin: 0 0 4px;">NYHET</p>
+          <h4 style="font-size: 18px; margin: 0 0 6px; color: #1A2E2A; font-weight: 500;">Svart presisjon for hjemmebaristaen</h4>
+          <p style="font-size: 11px; color: #5F5E5A; margin: 0 0 12px;">Lær mer om vår nye espressomaskin.</p>
+        </div>
+        <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.45);"></div>
+        <div class="coach-card" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: var(--border-radius-lg); padding: 22px; box-shadow: 0 8px 24px rgba(0,0,0,0.15);">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <div style="width: 22px; height: 22px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500;">SK</div>
+            <p style="font-size: 12px; margin: 0;">Hei, Stine 👋</p>
+          </div>
+          <h4 style="font-size: 16px; margin: 12px 0 12px;">Slik kommenterer du</h4>
+          <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px;">
+            <div style="width: 28px; height: 28px; border-radius: 50% 50% 50% 4px; background: var(--pek-pin); color: white; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><i class="ti ti-pointer" style="font-size: 14px;"></i></div>
+            <div><p style="font-size: 13px; font-weight: 500; margin: 0 0 2px;">Klikk hvor som helst</p><p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;">Da fester kommentaren seg til akkurat det stedet.</p></div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px;">
+            <div style="width: 28px; height: 28px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-text-secondary);"><i class="ti ti-device-mobile" style="font-size: 16px;"></i></div>
+            <div><p style="font-size: 13px; font-weight: 500; margin: 0 0 2px;">Bytt mellom mobil og desktop</p><p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;">Knappen ligger nederst. Kommentarer henger sammen.</p></div>
+          </div>
+          <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 18px;">
+            <div style="width: 28px; height: 28px; border-radius: var(--border-radius-md); background: var(--color-background-secondary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--color-text-secondary);"><i class="ti ti-message-circle" style="font-size: 16px;"></i></div>
+            <div><p style="font-size: 13px; font-weight: 500; margin: 0 0 2px;">Vi svarer i kommentaren</p><p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;">Du får ikke epost – men ser svar når du kommer tilbake.</p></div>
+          </div>
+          <button onclick="showStep(3)" style="width: 100%; background: var(--color-text-primary); color: var(--color-background-primary); border: none; border-radius: var(--border-radius-md); padding: 10px; font-size: 13px; font-weight: 500;">Sett i gang</button>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Coach vises kun første gang. Tre regler – ikke seks.</p>
+  </div>
+
+  <!-- STEP 3 -->
+  <div id="view-3" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div class="browser-chrome">
+        <div style="display: flex; gap: 4px;">
+          <span class="browser-dot" style="background: #FF5F57;"></span>
+          <span class="browser-dot" style="background: #FEBC2E;"></span>
+          <span class="browser-dot" style="background: #28C840;"></span>
+        </div>
+        <div style="flex: 1; background: var(--color-background-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--color-text-secondary);">feedback.try.no/p/wilfa-v3</div>
+      </div>
+      <div style="position: relative; height: 380px; background: #FAF8F3; overflow: hidden;">
+        <div style="background: #1A2E2A; color: #E8DCC4; padding: 12px 20px;">
+          <span style="font-weight: 500; font-size: 13px; letter-spacing: 0.5px;">WILFA</span>
+        </div>
+        <div style="padding: 24px 20px;">
+          <p style="font-size: 10px; color: #BA7517; letter-spacing: 1.5px; margin: 0 0 4px;">NYHET</p>
+          <h4 style="font-size: 18px; margin: 0 0 6px; color: #1A2E2A; font-weight: 500;">Svart presisjon for hjemmebaristaen</h4>
+        </div>
+        <div style="position: absolute; top: 64px; left: 16px; width: 76px; height: 20px; border: 2px solid var(--pek-pin); border-radius: 4px;"></div>
+        <div class="pin" style="position: absolute; top: 56px; left: 8px; width: 26px; height: 26px; font-size: 11px;"><i class="ti ti-pencil" style="font-size: 13px;"></i></div>
+        <div style="position: absolute; top: 56px; left: 44px; width: 260px; background: white; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); box-shadow: 0 4px 16px rgba(0,0,0,0.12); padding: 12px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+            <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500;">SK</div>
+            <div style="flex: 1;">
+              <p style="font-size: 12px; font-weight: 500; margin: 0;">Stine Karlsen</p>
+              <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0;">Peker på "NYHET"-merket</p>
+            </div>
+          </div>
+          <textarea style="width: 100%; min-height: 60px; font-size: 12px; padding: 8px;">Kan vi prøve "Ny modell" i stedet for "Nyhet"? Føles mer eksklusivt.</textarea>
+          <div style="display: flex; align-items: center; gap: 4px; padding: 8px 0 0;">
+            <button style="font-size: 10px; padding: 3px 8px;"><i class="ti ti-paperclip" style="font-size: 11px;"></i> Vedlegg</button>
+            <span style="margin-left: auto;">
+              <button style="font-size: 11px; padding: 3px 12px; background: var(--color-text-primary); color: var(--color-background-primary); border: none;" onclick="showStep(4)">Send</button>
+            </span>
+          </div>
+          <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 8px 0 0; padding-top: 8px; border-top: 0.5px solid var(--color-border-tertiary);"><i class="ti ti-device-desktop" style="font-size: 11px;"></i> Desktop · 1440px · Forsiden</p>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Highlight viser hva som er valgt. Device + viewport-stempelet lar oss reprodusere kontekst senere.</p>
+  </div>
+
+  <!-- STEP 4 -->
+  <div id="view-4" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div class="browser-chrome">
+        <div style="display: flex; gap: 4px;">
+          <span class="browser-dot" style="background: #FF5F57;"></span>
+          <span class="browser-dot" style="background: #FEBC2E;"></span>
+          <span class="browser-dot" style="background: #28C840;"></span>
+        </div>
+        <div style="flex: 1; background: var(--color-background-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--color-text-secondary);">feedback.try.no/p/wilfa-v3</div>
+      </div>
+      <div style="position: relative; height: 380px; background: #FAF8F3; overflow: hidden;">
+        <div style="background: #1A2E2A; color: #E8DCC4; padding: 12px 20px;">
+          <span style="font-weight: 500; font-size: 13px; letter-spacing: 0.5px;">WILFA</span>
+        </div>
+        <div style="padding: 24px 20px;">
+          <p style="font-size: 10px; color: #BA7517; letter-spacing: 1.5px; margin: 0 0 4px;">NYHET</p>
+          <h4 style="font-size: 18px; margin: 0 0 6px; color: #1A2E2A; font-weight: 500;">Svart presisjon for hjemmebaristaen</h4>
+        </div>
+        <div class="pin" style="position: absolute; top: 56px; left: 8px; width: 26px; height: 26px; font-size: 11px;">1</div>
+        <div style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); background: var(--color-text-primary); color: var(--color-background-primary); border-radius: var(--border-radius-md); padding: 10px 14px; display: flex; align-items: center; gap: 10px; font-size: 12px;">
+          <i class="ti ti-check" style="font-size: 14px;"></i> Sendt – Kristoffer ser den nå
+        </div>
+        <div style="position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); background: white; border: 0.5px solid var(--color-border-secondary); border-radius: 999px; padding: 5px 14px; display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 11px; color: var(--color-text-secondary);">Du har 1 kommentar på denne siden</span>
+          <span style="width: 0.5px; height: 14px; background: var(--color-border-tertiary);"></span>
+          <span style="font-size: 11px; color: var(--color-text-info); font-weight: 500;">Neste: Produktside →</span>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Toolbar oppdaterer seg til en mild progress-indikator som peker videre i materialet.</p>
+  </div>
+
+</div>
+
+<script>
+function showStep(n) {
+  for (let i = 1; i <= 4; i++) {
+    document.getElementById('view-' + i).style.display = i === n ? 'block' : 'none';
+    document.getElementById('tab-' + i).classList.toggle('active', i === n);
+  }
+}
+</script>
+</body>
+</html>

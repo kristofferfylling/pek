@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pek · TRYs trådvisning</title>
+<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+.code-inline { font-family: var(--font-mono); font-size: 10px; background: var(--color-background-secondary); padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="pek-prototype">
+
+  <div class="pek-tabs">
+    <button class="pek-tab active" id="t-1" onclick="showT(1)">1. Tråden</button>
+    <button class="pek-tab" id="t-2" onclick="showT(2)">2. Svar</button>
+    <button class="pek-tab" id="t-3" onclick="showT(3)">3. Gruppér</button>
+  </div>
+
+  <!-- 1: THREAD DETAIL -->
+  <div id="v-1">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div style="padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 8px; font-size: 12px;">
+        <i class="ti ti-arrow-left" style="font-size: 14px; color: var(--color-text-secondary);"></i>
+        <span style="color: var(--color-text-tertiary);">Wilfa Shopify v3</span>
+        <i class="ti ti-chevron-right" style="font-size: 11px; color: var(--color-text-tertiary);"></i>
+        <span style="color: var(--color-text-secondary);">Forsiden</span>
+        <i class="ti ti-chevron-right" style="font-size: 11px; color: var(--color-text-tertiary);"></i>
+        <span style="font-weight: 500;">Tråd #14</span>
+        <div style="margin-left: auto; display: flex; align-items: center; gap: 6px;">
+          <span style="font-size: 11px; background: var(--color-background-warning); color: var(--color-text-warning); padding: 3px 8px; border-radius: 4px;">Åpen</span>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 220px; min-height: 440px;">
+        <div style="border-right: 0.5px solid var(--color-border-tertiary); padding: 14px 16px;">
+          <div style="display: flex; align-items: flex-start; gap: 10px; padding-bottom: 12px; border-bottom: 0.5px solid var(--color-border-tertiary); margin-bottom: 12px;">
+            <div class="pin" style="width: 24px; height: 24px; font-size: 11px; flex-shrink: 0;">14</div>
+            <div style="flex: 1;">
+              <p style="font-size: 12px; font-weight: 500; margin: 0 0 2px;">"Nyhet"-merket på forsiden</p>
+              <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 0;">Desktop 1440px · DOM: <code class="code-inline">.hero__eyebrow</code></p>
+            </div>
+            <div style="width: 56px; height: 36px; background: linear-gradient(135deg, #FAF8F3, #D3D1C7); border-radius: 4px; border: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; justify-content: center;">
+              <i class="ti ti-zoom-in" style="font-size: 12px; color: var(--color-text-secondary);"></i>
+            </div>
+          </div>
+          <div style="display: flex; gap: 10px; margin-bottom: 14px;">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0;">SK</div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+                <p style="font-size: 12px; font-weight: 500; margin: 0;">Stine Karlsen</p>
+                <span style="font-size: 10px; color: var(--color-text-tertiary);">Wilfa · for 2 timer siden</span>
+              </div>
+              <p style="font-size: 13px; line-height: 1.5; margin: 0 0 6px;">Kan vi prøve "Ny modell" i stedet for "Nyhet"? Føles mer eksklusivt og passer bedre til hvordan vi posisjonerer Espresso Pro-linjen.</p>
+              <span style="font-size: 10px; color: var(--color-text-tertiary);"><i class="ti ti-thumb-up" style="font-size: 11px;"></i> 1 · Eirik (Wilfa)</span>
+            </div>
+          </div>
+          <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 8px 10px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+            <i class="ti ti-sparkles" style="font-size: 13px; color: var(--color-text-info);"></i>
+            <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0; flex: 1;">Foreslått tag: <span style="background: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; border: 0.5px solid var(--color-border-tertiary);">Tekst/copy</span> <span style="background: white; padding: 2px 6px; border-radius: 4px; font-size: 10px; border: 0.5px solid var(--color-border-tertiary);">Forsiden</span></p>
+            <button style="font-size: 10px; padding: 3px 8px;">Godta</button>
+          </div>
+          <div style="background: rgba(250, 199, 117, 0.12); border-left: 2px solid #EF9F27; border-radius: 0 var(--border-radius-md) var(--border-radius-md) 0; padding: 10px 12px; margin-bottom: 14px;">
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <i class="ti ti-lock" style="font-size: 11px; color: #854F0B;"></i>
+              <p style="font-size: 10px; color: #854F0B; margin: 0; letter-spacing: 0.3px; font-weight: 500;">INTERN NOTAT · KUN TEAMET</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="width: 20px; height: 20px; border-radius: 50%; background: #D3D1C7; color: #5F5E5A; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500;">MN</div>
+              <p style="font-size: 12px; margin: 0;"><span style="font-weight: 500;">Marte (Tekst):</span> Enig, "Ny modell" er på linje med tonen vi diskuterte i kickoff.</p>
+            </div>
+          </div>
+          <div style="border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); padding: 10px 12px;">
+            <p style="font-size: 12px; color: var(--color-text-tertiary); margin: 0;">Svar Stine, eller skriv intern notat...</p>
+          </div>
+        </div>
+        <div style="padding: 14px; background: var(--color-background-secondary); display: flex; flex-direction: column; gap: 14px;">
+          <div>
+            <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; letter-spacing: 0.5px;">STATUS</p>
+            <select style="width: 100%; height: 30px; font-size: 12px;">
+              <option>Åpen</option><option>Sett</option><option>I arbeid</option><option>Løst</option>
+            </select>
+          </div>
+          <div>
+            <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; letter-spacing: 0.5px;">TILORDNET</p>
+            <div style="display: flex; align-items: center; gap: 6px; padding: 6px 8px; background: white; border-radius: 6px; border: 0.5px solid var(--color-border-tertiary);">
+              <div style="width: 18px; height: 18px; border-radius: 50%; background: var(--pek-pin); color: white; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500;">KF</div>
+              <span style="font-size: 12px;">Kristoffer</span>
+              <i class="ti ti-chevron-down" style="font-size: 11px; color: var(--color-text-secondary); margin-left: auto;"></i>
+            </div>
+          </div>
+          <div>
+            <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; letter-spacing: 0.5px;">LINEAR-ISSUE</p>
+            <button style="width: 100%; font-size: 11px; padding: 6px;"><i class="ti ti-plus" style="font-size: 12px;"></i> Opprett issue</button>
+          </div>
+          <div>
+            <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0 0 6px; letter-spacing: 0.5px;"><i class="ti ti-link" style="font-size: 11px;"></i> RELATERTE TRÅDER</p>
+            <div style="background: white; border-radius: 6px; border: 0.5px solid var(--color-border-tertiary); padding: 8px 10px; margin-bottom: 6px;">
+              <p style="font-size: 11px; font-weight: 500; margin: 0 0 2px;">#9 · Produktside</p>
+              <p style="font-size: 10px; color: var(--color-text-secondary); margin: 0;">"Eyebrow-tekstene er litt salgsy"</p>
+            </div>
+            <div style="background: white; border-radius: 6px; border: 0.5px solid var(--color-border-tertiary); padding: 8px 10px;">
+              <p style="font-size: 11px; font-weight: 500; margin: 0 0 2px;">#17 · Kategoriside</p>
+              <p style="font-size: 10px; color: var(--color-text-secondary); margin: 0;">"NYHET-tag overalt – kan vi rydde?"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Gul intern notat med låsikon – visuelt umulig å forveksle med kundekommentar.</p>
+  </div>
+
+  <!-- 2: COMPOSING REPLY -->
+  <div id="v-2" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div style="padding: 10px 14px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 8px; font-size: 12px;">
+        <span style="font-weight: 500;">Tråd #14 · Forsiden</span>
+        <span style="margin-left: auto; font-size: 11px; background: var(--color-background-warning); color: var(--color-text-warning); padding: 3px 8px; border-radius: 4px;">Åpen</span>
+      </div>
+      <div style="padding: 14px 16px;">
+        <div style="display: flex; gap: 10px; margin-bottom: 14px; opacity: 0.7;">
+          <div style="width: 24px; height: 24px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 500; flex-shrink: 0;">SK</div>
+          <div style="flex: 1;">
+            <p style="font-size: 11px; margin: 0 0 2px;"><span style="font-weight: 500;">Stine</span> <span style="color: var(--color-text-tertiary);">· 2t</span></p>
+            <p style="font-size: 12px; margin: 0;">Kan vi prøve "Ny modell" i stedet for "Nyhet"?</p>
+          </div>
+        </div>
+        <div style="border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); overflow: hidden;">
+          <div style="display: flex; padding: 8px 10px 0; border-bottom: 0.5px solid var(--color-border-tertiary); gap: 4px;">
+            <span style="font-size: 11px; padding: 6px 10px; border-bottom: 2px solid var(--color-text-primary); margin-bottom: -0.5px; font-weight: 500;">Svar Stine</span>
+            <span style="font-size: 11px; padding: 6px 10px; color: var(--color-text-secondary);"><i class="ti ti-lock" style="font-size: 11px;"></i> Intern notat</span>
+          </div>
+          <textarea style="width: 100%; min-height: 90px; border: none; padding: 10px 12px; font-size: 13px; line-height: 1.5; resize: vertical; outline: none;">Bra catch, Stine. Vi endret "NYHET" til "NY MODELL" på forsiden nå. La meg vite hvis det fungerer.</textarea>
+          <div style="padding: 8px 10px; border-top: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; background: var(--color-background-secondary);">
+            <button style="font-size: 10px; padding: 4px 8px;"><i class="ti ti-arrow-loop-right" style="font-size: 11px;"></i> Logg endring</button>
+            <button style="font-size: 10px; padding: 4px 8px;"><i class="ti ti-paperclip" style="font-size: 11px;"></i> Vedlegg</button>
+            <button style="font-size: 10px; padding: 4px 8px;"><i class="ti ti-message-2" style="font-size: 11px;"></i> Maler</button>
+            <span style="margin-left: auto; display: flex; align-items: center; gap: 6px;">
+              <label style="font-size: 11px; color: var(--color-text-secondary); display: inline-flex; align-items: center; gap: 4px;">
+                <input type="checkbox" checked> Marker som løst
+              </label>
+              <button style="font-size: 11px; padding: 5px 14px; background: var(--color-text-primary); color: var(--color-background-primary); border: none;">Send svar</button>
+            </span>
+          </div>
+        </div>
+        <div style="margin-top: 12px; display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: rgba(55,138,221,0.05); border-radius: var(--border-radius-md);">
+          <i class="ti ti-sparkles" style="font-size: 14px; color: var(--color-text-info);"></i>
+          <p style="font-size: 11px; margin: 0; color: var(--color-text-secondary); flex: 1;">Vi merker at du har endret tekst. Logg den som <code class="code-inline">"NYHET" → "NY MODELL"</code> så vises endringen i tråden?</p>
+          <button style="font-size: 10px; padding: 3px 8px;">Ja, logg</button>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Tab-bytte mellom "Svar" og "Intern notat" hindrer at private kommentarer havner ut.</p>
+  </div>
+
+  <!-- 3: GROUP RELATED -->
+  <div id="v-3" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div style="padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 10px;">
+        <i class="ti ti-sparkles" style="font-size: 16px; color: var(--color-text-info);"></i>
+        <div style="flex: 1;">
+          <p style="font-size: 13px; font-weight: 500; margin: 0;">3 relaterte kommentarer ser ut til å handle om samme ting</p>
+          <p style="font-size: 11px; color: var(--color-text-secondary); margin: 1px 0 0;">Gruppér dem og send som én Linear-issue?</p>
+        </div>
+      </div>
+      <div style="padding: 14px 16px; background: rgba(55,138,221,0.03);">
+        <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 0 0 10px; letter-spacing: 0.5px;">FORESLÅTT GRUPPE: "Rydd opp i NYHET-tag på tvers"</p>
+        <div style="background: white; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); padding: 10px 12px; margin-bottom: 6px; display: flex; gap: 10px;">
+          <input type="checkbox" checked style="margin-top: 3px;">
+          <span class="pin" style="width: 20px; height: 20px; font-size: 10px; flex-shrink: 0;">14</span>
+          <div style="flex: 1;">
+            <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 2px;">Stine · Forsiden</p>
+            <p style="font-size: 12px; margin: 0;">Kan vi prøve "Ny modell" i stedet for "Nyhet"?</p>
+          </div>
+        </div>
+        <div style="background: white; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); padding: 10px 12px; margin-bottom: 6px; display: flex; gap: 10px;">
+          <input type="checkbox" checked style="margin-top: 3px;">
+          <span class="pin" style="width: 20px; height: 20px; font-size: 10px; flex-shrink: 0;">9</span>
+          <div style="flex: 1;">
+            <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 2px;">Stine · Produktside</p>
+            <p style="font-size: 12px; margin: 0;">Eyebrow-tekstene er litt salgsy. Kan vi tone ned?</p>
+          </div>
+        </div>
+        <div style="background: white; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-tertiary); padding: 10px 12px; margin-bottom: 12px; display: flex; gap: 10px;">
+          <input type="checkbox" checked style="margin-top: 3px;">
+          <span class="pin" style="width: 20px; height: 20px; font-size: 10px; flex-shrink: 0;">17</span>
+          <div style="flex: 1;">
+            <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 2px;">Eirik · Kategoriside</p>
+            <p style="font-size: 12px; margin: 0;">NYHET-tag overalt – kan vi rydde?</p>
+          </div>
+        </div>
+        <div style="background: white; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); overflow: hidden;">
+          <div style="padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 8px;">
+            <i class="ti ti-circle-dashed" style="font-size: 14px; color: var(--color-text-secondary);"></i>
+            <span style="font-size: 11px; color: var(--color-text-tertiary);">DIG-Linear · Wilfa-prosjekt</span>
+            <span style="margin-left: auto; font-size: 10px; background: var(--color-background-secondary); padding: 2px 6px; border-radius: 4px;">Triage</span>
+          </div>
+          <div style="padding: 10px 12px;">
+            <input type="text" value="Rydd opp i NYHET/Ny modell-merking på tvers av siden" style="width: 100%; border: none; outline: none; font-size: 13px; font-weight: 500; padding: 0; background: transparent; margin-bottom: 6px;">
+            <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0; line-height: 1.5;">Wilfa-teamet (Stine + Eirik) peker på tre steder hvor "NYHET" føles for salgsy. Forslag: bytte til "Ny modell" og auditere all eyebrow-copy.</p>
+            <div style="display: flex; gap: 4px; margin-top: 8px;">
+              <span style="font-size: 10px; padding: 2px 6px; background: var(--color-background-secondary); border-radius: 4px;">copy</span>
+              <span style="font-size: 10px; padding: 2px 6px; background: var(--color-background-secondary); border-radius: 4px;">wilfa</span>
+              <span style="font-size: 10px; padding: 2px 6px; background: var(--color-background-secondary); border-radius: 4px;">+ 3 Pek-tråder</span>
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; gap: 8px; margin-top: 12px;">
+          <button style="flex: 1; font-size: 11px; padding: 8px;">Behold som egne tråder</button>
+          <button style="flex: 1; font-size: 11px; padding: 8px; background: var(--color-text-primary); color: var(--color-background-primary); border: none;">Send som én issue ↗</button>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">AI foreslår grupperingen, men du bestemmer. Alle tre tråder lenkes til samme Linear-issue.</p>
+  </div>
+
+</div>
+
+<script>
+function showT(n) {
+  for (let i = 1; i <= 3; i++) {
+    document.getElementById('v-' + i).style.display = i === n ? 'block' : 'none';
+    document.getElementById('t-' + i).classList.toggle('active', i === n);
+  }
+}
+</script>
+</body>
+</html>

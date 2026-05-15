@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pek · Kundens returbesøk</title>
+<link rel="stylesheet" href="../shared.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+.browser-chrome { background: var(--color-background-secondary); padding: 8px 12px; display: flex; align-items: center; gap: 8px; border-bottom: 0.5px solid var(--color-border-tertiary); }
+.browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div class="pek-prototype">
+
+  <div class="pek-tabs">
+    <button class="pek-tab active" id="tab-a" onclick="showRet('a')">1. Tilbake</button>
+    <button class="pek-tab" id="tab-b" onclick="showRet('b')">2. Min innboks</button>
+    <button class="pek-tab" id="tab-c" onclick="showRet('c')">3. Tråden</button>
+    <button class="pek-tab" id="tab-d" onclick="showRet('d')">4. Avgjør</button>
+  </div>
+
+  <!-- A: COMING BACK -->
+  <div id="view-a">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div class="browser-chrome">
+        <div style="display: flex; gap: 4px;">
+          <span class="browser-dot" style="background: #FF5F57;"></span>
+          <span class="browser-dot" style="background: #FEBC2E;"></span>
+          <span class="browser-dot" style="background: #28C840;"></span>
+        </div>
+        <div style="flex: 1; background: var(--color-background-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--color-text-secondary);">feedback.try.no/p/wilfa-v3</div>
+      </div>
+      <div style="position: relative; height: 380px; background: #FAF8F3; overflow: hidden;">
+        <div style="background: #1A2E2A; color: #E8DCC4; padding: 12px 20px;"><span style="font-weight: 500; font-size: 13px; letter-spacing: 0.5px;">WILFA</span></div>
+        <div style="padding: 24px 20px;">
+          <p style="font-size: 10px; color: #BA7517; letter-spacing: 1.5px; margin: 0 0 4px;">NY MODELL</p>
+          <h4 style="font-size: 18px; margin: 0 0 6px; color: #1A2E2A; font-weight: 500;">Svart presisjon for hjemmebaristaen</h4>
+        </div>
+        <div style="position: absolute; top: 56px; left: 8px;">
+          <div style="position: relative;">
+            <div class="pin" style="width: 28px; height: 28px; font-size: 11px;">1</div>
+            <span style="position: absolute; top: -2px; right: -2px; width: 10px; height: 10px; background: var(--color-text-info); border-radius: 50%; border: 1.5px solid white;"></span>
+          </div>
+        </div>
+        <div style="position: absolute; top: 80px; left: 50%; transform: translateX(-50%); width: 330px; background: white; border-radius: var(--border-radius-lg); border: 0.5px solid var(--color-border-secondary); box-shadow: 0 4px 16px rgba(0,0,0,0.1); padding: 18px;">
+          <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+            <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-weight: 500;">SK</div>
+            <div style="flex: 1;">
+              <p style="font-size: 14px; font-weight: 500; margin: 0;">Velkommen tilbake, Stine</p>
+              <p style="font-size: 11px; color: var(--color-text-secondary); margin: 1px 0 0;">Det har skjedd litt siden sist</p>
+            </div>
+          </div>
+          <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+            <i class="ti ti-message-circle" style="font-size: 16px; color: var(--color-text-info);"></i>
+            <div style="flex: 1;">
+              <p style="font-size: 12px; margin: 0;"><span style="font-weight: 500;">3 nye svar</span> på dine kommentarer</p>
+              <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 1px 0 0;">Kristoffer og Marius har svart</p>
+            </div>
+          </div>
+          <div style="background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 12px; margin-bottom: 14px; display: flex; align-items: center; gap: 10px;">
+            <i class="ti ti-sparkles" style="font-size: 16px; color: var(--color-text-success);"></i>
+            <div style="flex: 1;">
+              <p style="font-size: 12px; margin: 0;"><span style="font-weight: 500;">2 endringer</span> tatt med videre</p>
+              <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 1px 0 0;">Bl.a. "Ny modell" – se den live</p>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button style="flex: 1; background: var(--color-text-primary); color: var(--color-background-primary); border: none; border-radius: var(--border-radius-md); padding: 10px; font-weight: 500;">Se hva som er nytt</button>
+            <button>Senere</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">"NY MODELL" står allerede i hero-banneret bak kortet – Stine ser umiddelbart at vi har lyttet.</p>
+  </div>
+
+  <!-- B: PERSONAL INBOX -->
+  <div id="view-b" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div style="padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 10px;">
+        <div style="width: 24px; height: 24px; border-radius: 5px; background: var(--color-text-primary); display: flex; align-items: center; justify-content: center;">
+          <i class="ti ti-message-circle" style="font-size: 12px; color: var(--color-background-primary);"></i>
+        </div>
+        <p style="font-size: 13px; font-weight: 500; margin: 0;">Wilfa Shopify v3</p>
+        <p style="font-size: 11px; color: var(--color-text-tertiary); margin: 0;">· dine kommentarer</p>
+        <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 11px; color: var(--color-text-secondary);">Stine K.</span>
+          <div style="width: 22px; height: 22px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500;">SK</div>
+        </div>
+      </div>
+      <div style="padding: 10px 16px; display: flex; align-items: center; gap: 6px; border-bottom: 0.5px solid var(--color-border-tertiary); font-size: 11px;">
+        <span style="background: var(--color-background-secondary); padding: 4px 10px; border-radius: 999px; font-weight: 500;">Alt</span>
+        <span style="padding: 4px 10px; color: var(--color-text-info); display: inline-flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; background: var(--color-text-info); border-radius: 50%;"></span> Nytt 3</span>
+        <span style="padding: 4px 10px; color: var(--color-text-secondary);">Venter 2</span>
+        <span style="padding: 4px 10px; color: var(--color-text-secondary);">Løst 8</span>
+      </div>
+      <div style="padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; gap: 10px; background-color: rgba(55, 138, 221, 0.04);">
+        <span class="pin" style="width: 22px; height: 22px; font-size: 11px; flex-shrink: 0; margin-top: 1px;">1</span>
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+            <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;"><span style="color: var(--color-text-primary); font-weight: 500;">Du</span> på Forsiden · "NYHET"-merket</p>
+            <span style="font-size: 10px; background: var(--color-background-info); color: var(--color-text-info); padding: 2px 6px; border-radius: 4px; margin-left: auto;">Nytt svar</span>
+          </div>
+          <p style="font-size: 12px; margin: 0 0 6px;">Kan vi prøve "Ny modell" i stedet for "Nyhet"?</p>
+          <div style="background: white; border: 0.5px solid var(--color-border-tertiary); border-radius: 6px; padding: 8px 10px;">
+            <p style="font-size: 11px; margin: 0 0 2px;"><span style="font-weight: 500;">Kristoffer</span> <span style="color: var(--color-text-tertiary);">· i går kl 16:42</span></p>
+            <p style="font-size: 12px; margin: 0;">Bra catch. Vi endret den nå – se forsiden 👀</p>
+          </div>
+          <div style="margin-top: 6px;">
+            <span style="font-size: 10px; background: var(--color-background-success); color: var(--color-text-success); padding: 2px 6px; border-radius: 4px;"><i class="ti ti-check" style="font-size: 10px;"></i> Endret</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 12px 16px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; gap: 10px;">
+        <span class="pin" style="width: 22px; height: 22px; font-size: 11px; flex-shrink: 0; margin-top: 1px;">3</span>
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+            <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;"><span style="color: var(--color-text-primary); font-weight: 500;">Du</span> på Produktside · CTA-knappen</p>
+            <span style="font-size: 10px; background: var(--color-background-warning); color: var(--color-text-warning); padding: 2px 6px; border-radius: 4px; margin-left: auto;">Venter på deg</span>
+          </div>
+          <p style="font-size: 12px; margin: 0 0 6px;">Knappefargen er for skarp på mobil</p>
+          <div style="background: white; border: 0.5px solid var(--color-border-tertiary); border-radius: 6px; padding: 8px 10px;">
+            <p style="font-size: 11px; margin: 0 0 2px;"><span style="font-weight: 500;">Kristoffer</span> <span style="color: var(--color-text-tertiary);">· i går</span></p>
+            <p style="font-size: 12px; margin: 0;">Mente du den oransje "Kjøp nå" eller den grå "Les mer"?</p>
+          </div>
+        </div>
+      </div>
+      <div style="padding: 12px 16px; display: flex; gap: 10px;">
+        <span class="pin pin-resolved" style="width: 22px; height: 22px; flex-shrink: 0; margin-top: 1px;"><i class="ti ti-check" style="font-size: 11px;"></i></span>
+        <div style="flex: 1;">
+          <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 2px;">
+            <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;"><span style="color: var(--color-text-primary); font-weight: 500;">Du</span> på Mobilnavigasjon · Drawer</p>
+            <span style="font-size: 10px; background: var(--color-background-success); color: var(--color-text-success); padding: 2px 6px; border-radius: 4px; margin-left: auto;">På backlog</span>
+          </div>
+          <p style="font-size: 12px; color: var(--color-text-secondary); margin: 0;">Drawer føles tregt – kan vi snappe raskere?</p>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Stine ser kun sine egne kommentarer – kollegaers tråder vises ikke før hun bytter til "Alle på Wilfa-siden".</p>
+  </div>
+
+  <!-- C: THREAD VIEW -->
+  <div id="view-c" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div class="browser-chrome">
+        <div style="display: flex; gap: 4px;">
+          <span class="browser-dot" style="background: #FF5F57;"></span>
+          <span class="browser-dot" style="background: #FEBC2E;"></span>
+          <span class="browser-dot" style="background: #28C840;"></span>
+        </div>
+        <div style="flex: 1; background: var(--color-background-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--color-text-secondary);">feedback.try.no/p/wilfa-v3 · #1</div>
+      </div>
+      <div style="position: relative; height: 380px; background: #FAF8F3; overflow: hidden;">
+        <div style="background: #1A2E2A; color: #E8DCC4; padding: 12px 20px;"><span style="font-weight: 500; font-size: 13px;">WILFA</span></div>
+        <div style="padding: 24px 20px;">
+          <p style="font-size: 10px; color: #BA7517; letter-spacing: 1.5px; margin: 0 0 4px;">NY MODELL</p>
+          <h4 style="font-size: 18px; margin: 0 0 6px; color: #1A2E2A; font-weight: 500;">Svart presisjon for hjemmebaristaen</h4>
+        </div>
+        <div style="position: absolute; top: 64px; left: 16px; width: 92px; height: 20px; border: 2px solid var(--pek-resolved); border-radius: 4px;"></div>
+        <div class="pin" style="position: absolute; top: 56px; left: 8px; width: 26px; height: 26px; font-size: 11px;">1</div>
+        <div style="position: absolute; top: 56px; left: 44px; width: 280px; background: white; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+          <div style="padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 11px; color: var(--color-text-tertiary);">Forsiden · "NYHET"-merket</span>
+            <span style="margin-left: auto; font-size: 10px; background: var(--color-background-success); color: var(--color-text-success); padding: 2px 6px; border-radius: 4px;"><i class="ti ti-check" style="font-size: 10px;"></i> Endret</span>
+          </div>
+          <div style="padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary);">
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <div style="width: 18px; height: 18px; border-radius: 50%; background: var(--color-background-info); color: var(--color-text-info); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500;">SK</div>
+              <p style="font-size: 11px; font-weight: 500; margin: 0;">Stine</p>
+              <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0;">· i går</p>
+            </div>
+            <p style="font-size: 12px; margin: 0;">Kan vi prøve "Ny modell" i stedet for "Nyhet"? Føles mer eksklusivt.</p>
+          </div>
+          <div style="padding: 10px 12px; background: var(--color-background-secondary); border-bottom: 0.5px solid var(--color-border-tertiary);">
+            <div style="display: flex; align-items: center; gap: 6px; margin-bottom: 4px;">
+              <div style="width: 18px; height: 18px; border-radius: 50%; background: var(--pek-pin); color: white; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 500;">KF</div>
+              <p style="font-size: 11px; font-weight: 500; margin: 0;">Kristoffer</p>
+              <p style="font-size: 10px; color: var(--color-text-tertiary); margin: 0;">· i går kl 16:42</p>
+            </div>
+            <p style="font-size: 12px; margin: 0;">Bra catch. Vi endret den nå – se forsiden 👀</p>
+          </div>
+          <div style="padding: 8px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 6px;">
+            <i class="ti ti-arrow-loop-right" style="font-size: 12px; color: var(--color-text-secondary);"></i>
+            <p style="font-size: 10px; color: var(--color-text-secondary); margin: 0;">"NYHET" → "NY MODELL" på forsiden, i går</p>
+          </div>
+          <div style="padding: 10px 12px;">
+            <textarea placeholder="Svar..." style="width: 100%; min-height: 44px; font-size: 12px;"></textarea>
+            <div style="display: flex; align-items: center; gap: 6px; margin-top: 6px;">
+              <button style="font-size: 10px; padding: 3px 8px;"><i class="ti ti-thumb-up" style="font-size: 11px;"></i> Bra</button>
+              <button style="font-size: 10px; padding: 3px 8px;"><i class="ti ti-circle-check" style="font-size: 11px;"></i> Marker som løst</button>
+              <button style="font-size: 11px; padding: 3px 12px; margin-left: auto; background: var(--color-text-primary); color: var(--color-background-primary); border: none;">Send</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">"Bra"-reaksjonen og "Marker som løst" lar Stine lukke tråden uten å skrive – fjerner "thanks!"-støy.</p>
+  </div>
+
+  <!-- D: DECIDE -->
+  <div id="view-d" style="display: none;">
+    <div style="background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-md); overflow: hidden;">
+      <div class="browser-chrome">
+        <div style="display: flex; gap: 4px;">
+          <span class="browser-dot" style="background: #FF5F57;"></span>
+          <span class="browser-dot" style="background: #FEBC2E;"></span>
+          <span class="browser-dot" style="background: #28C840;"></span>
+        </div>
+        <div style="flex: 1; background: var(--color-background-primary); border-radius: 4px; padding: 3px 8px; font-size: 11px; color: var(--color-text-secondary);">feedback.try.no/p/wilfa-v3 · #3</div>
+      </div>
+      <div style="position: relative; height: 380px; background: #FAF8F3; overflow: hidden;">
+        <div style="background: #1A2E2A; color: #E8DCC4; padding: 12px 20px;"><span style="font-weight: 500; font-size: 13px;">WILFA / Espresso Pro</span></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 16px 20px;">
+          <div style="background: #D3D1C7; border-radius: 6px; height: 130px; display: flex; align-items: center; justify-content: center;"><i class="ti ti-photo" style="font-size: 28px; color: #888780;"></i></div>
+          <div>
+            <h4 style="font-size: 14px; margin: 0 0 4px; color: #1A2E2A;">Espresso Pro</h4>
+            <p style="font-size: 11px; color: #5F5E5A; margin: 0 0 10px;">Sortmalt presisjon.</p>
+            <span style="display: inline-block; background: #BA7517; color: white; padding: 6px 12px; border-radius: 4px; font-size: 11px; margin-right: 4px;">Kjøp nå</span>
+            <span style="display: inline-block; background: white; color: #5F5E5A; padding: 6px 12px; border-radius: 4px; font-size: 11px; border: 0.5px solid #D3D1C7;">Les mer</span>
+          </div>
+        </div>
+        <div style="position: absolute; top: 132px; right: 144px; padding: 4px 6px; background: white; border: 0.5px solid var(--color-border-secondary); border-radius: 4px; font-size: 10px; cursor: pointer;"><i class="ti ti-pointer" style="font-size: 11px; color: var(--color-text-info);"></i> Denne</div>
+        <div style="position: absolute; top: 132px; right: 32px; padding: 4px 6px; background: white; border: 0.5px solid var(--color-border-secondary); border-radius: 4px; font-size: 10px; cursor: pointer;"><i class="ti ti-pointer" style="font-size: 11px; color: var(--color-text-info);"></i> Denne</div>
+        <div style="position: absolute; top: 100px; left: 50%; transform: translateX(-50%); width: 300px; background: white; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); box-shadow: 0 4px 16px rgba(0,0,0,0.1);">
+          <div style="padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary); display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 11px; color: var(--color-text-tertiary);">Produktside · CTA-knapp</span>
+            <span style="margin-left: auto; font-size: 10px; background: var(--color-background-warning); color: var(--color-text-warning); padding: 2px 6px; border-radius: 4px;">Venter på deg</span>
+          </div>
+          <div style="padding: 10px 12px; border-bottom: 0.5px solid var(--color-border-tertiary);">
+            <p style="font-size: 11px; margin: 0 0 2px;"><span style="font-weight: 500;">Kristoffer</span> <span style="color: var(--color-text-tertiary);">· i går</span></p>
+            <p style="font-size: 12px; margin: 0;">Mente du den oransje "Kjøp nå" eller den grå "Les mer"? Pek på den så det er tydelig 👇</p>
+          </div>
+          <div style="padding: 10px 12px;">
+            <p style="font-size: 11px; color: var(--color-text-secondary); margin: 0 0 8px;">Klikk "Denne" ved riktig knapp – så vet vi hvilken Kristoffer skal fikse.</p>
+            <button style="font-size: 10px; padding: 4px 8px;">Eller skriv et svar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="pek-note">Når TRY trenger avklaring, sendes kunden tilbake til det visuelle laget – ikke til et tekstskjema.</p>
+  </div>
+
+</div>
+
+<script>
+function showRet(letter) {
+  const steps = ['a', 'b', 'c', 'd'];
+  steps.forEach(s => {
+    document.getElementById('view-' + s).style.display = s === letter ? 'block' : 'none';
+    document.getElementById('tab-' + s).classList.toggle('active', s === letter);
+  });
+}
+</script>
+</body>
+</html>
