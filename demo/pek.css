@@ -572,6 +572,78 @@
   font-size: 13px;
 }
 
+/* Fagord-forklaring (beslutning 013) */
+.pek-jargon-term {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: help;
+  border-bottom: 1.5px dotted var(--color-text-info);
+  text-decoration: none;
+}
+
+.pek-jargon-term:hover {
+  color: var(--color-text-info);
+  background: rgba(24, 95, 165, 0.06);
+}
+
+.pek-term-popover {
+  position: fixed;
+  z-index: 100;
+  max-width: 300px;
+  background: var(--color-background-primary);
+  border: 0.5px solid var(--color-border-secondary);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  padding: 12px 14px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.pek-term-popover .label {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-info);
+  letter-spacing: 0.3px;
+  margin: 0 0 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pek-term-popover p {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.pek-term-popover .note {
+  margin-top: 8px;
+  font-size: 10px;
+  color: var(--color-text-tertiary);
+}
+
+.pek-term-popover button.close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  background: transparent;
+  padding: 2px;
+  font-size: 14px;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+}
+
+.pek-term-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: transparent;
+}
+
 .pek-back {
   border: none;
   background: transparent;
