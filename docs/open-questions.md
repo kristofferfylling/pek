@@ -4,6 +4,21 @@ Ting vi har snakket om, men ikke besluttet. Når et spørsmål er besluttet, fly
 
 ## Produkt
 
+### Hvilke ord får stiplet understrek?
+**Kontekst:** Beslutning 013 – AI forklarer fagord når kunden klikker. Uklart hvordan vi finner ordene.
+**Alternativer:**
+- AI detekterer jargon i teksten ved visning (fleksibelt, kan over/under-fange)
+- Fast ordliste (eyebrow, hero, CTA, …) + AI forklarer bare konteksten
+- Hybrid: ordliste for vanlige UX-termer, AI flagger resten over en terskel
+- TRY kan markere ord manuelt ved sending (fallback)
+
+### Språk på fagord-forklaringer
+**Kontekst:** Kommentar kan være norsk eller engelsk; kunden er ofte norsk.
+**Alternativer:**
+- Alltid norsk forklaring til kunde
+- Samme språk som kommentaren
+- Prosjektinnstilling per kunde/prosjekt
+
 ### Proaktiv AI-gruppering i innboksen – ja eller for mye magi?
 **Kontekst:** Pek kan dukke opp en banner i innboksen som sier "Tre relaterte kommentarer ser ut til å handle om samme ting – gruppér?". Det reduserer kognitivt arbeid, men kan også føles påtrengende.
 **Alternativer:**

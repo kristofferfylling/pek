@@ -42,6 +42,71 @@
   box-shadow: 0 0 0 0.5px var(--color-border-tertiary);
 }
 
+.pek-figma-paste {
+  display: flex; gap: 8px; padding: 10px 12px 0;
+  background: var(--color-background-secondary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+.pek-figma-paste input {
+  flex: 1; min-width: 0; padding: 8px 10px; font-size: 11px;
+  border: 0.5px solid var(--color-border-tertiary); border-radius: 6px;
+  font-family: inherit; background: var(--color-background-primary);
+}
+.pek-figma-paste button {
+  border: none; padding: 8px 14px; border-radius: 6px; font-size: 11px;
+  font-weight: 500; cursor: pointer; font-family: inherit;
+  background: var(--color-background-primary);
+  box-shadow: 0 0 0 0.5px var(--color-border-tertiary);
+}
+.pek-figma-paste-hint {
+  margin: 0; padding: 4px 12px 8px; font-size: 10px;
+  color: var(--color-text-tertiary);
+  background: var(--color-background-secondary);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+.pek-figma-paste-hint code { font-size: 9px; }
+.pek-figma-paste--setup { padding: 0; border: none; background: transparent; }
+.pek-figma-paste--setup .pek-figma-paste-hint { padding: 0; border: none; background: transparent; }
+
+.pek-team-setup-body { padding: 16px; max-width: 520px; }
+.pek-setup-card {
+  padding: 16px; margin-bottom: 12px; border-radius: 10px;
+  background: var(--color-background-primary);
+  box-shadow: 0 0 0 0.5px var(--color-border-tertiary);
+}
+.pek-setup-card h3 { margin: 0 0 8px; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; }
+.pek-setup-card p { margin: 0 0 12px; font-size: 12px; color: var(--color-text-secondary); line-height: 1.45; }
+.pek-setup-card.muted-card { background: var(--color-background-secondary); }
+.pek-setup-status { font-size: 11px; margin: 8px 0 0; color: var(--color-text-tertiary); }
+.pek-setup-status.ok { color: var(--color-text-success); }
+.pek-setup-link {
+  border: none; background: none; padding: 0; font-size: 11px;
+  color: var(--color-text-secondary); cursor: pointer; text-decoration: underline;
+  font-family: inherit;
+}
+.pek-setup-actions .primary {
+  width: 100%; padding: 12px; border: none; border-radius: 8px;
+  background: var(--color-text-primary); color: white; font-weight: 500;
+  font-family: inherit; cursor: pointer; font-size: 13px;
+}
+.pek-setup-actions .primary:disabled { opacity: 0.4; cursor: not-allowed; }
+.pek-team-preview-banner {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 12px; font-size: 11px; background: var(--color-background-info);
+  border-bottom: 0.5px solid var(--color-border-tertiary);
+}
+.pek-team-preview-banner button {
+  border: none; padding: 4px 10px; border-radius: 6px; font-size: 10px;
+  cursor: pointer; font-family: inherit; background: var(--color-background-primary);
+}
+.pek-figma-empty {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; min-height: 320px; text-align: center; padding: 24px; color: var(--color-text-secondary);
+}
+.pek-figma-empty i { font-size: 32px; margin-bottom: 12px; opacity: 0.5; }
+.pek-figma-empty p { margin: 0 0 6px; font-size: 14px; font-weight: 500; }
+.pek-figma-empty .muted { font-size: 12px; font-weight: 400; max-width: 240px; }
+
 .pek-proxy-banner {
   font-size: 10px; color: var(--color-text-secondary);
   padding: 6px 12px; background: var(--color-background-info);

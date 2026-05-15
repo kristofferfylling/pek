@@ -125,3 +125,21 @@ Lett ADR-stil. Hver beslutning har kontekst, valget, og begrunnelsen. Når vi re
 **Begrunnelse:** I 95 % av tilfellene hvor TRY skriver "vi endret det nå", vil de også lukke tråden. Tre separate steg (skriv, send, naviger til status-dropdown, velg "Closed") er friksjon uten verdi.
 
 **Konsekvens:** Checkboxen er ikke forhåndsavkrysset – TRY må aktivt velge det. Forhindrer feilaktig lukking.
+
+---
+
+## 013 · Fagord-forklaring for kunden (dotted underline + AI)
+
+**Valg:** Når TRY (eller andre) bruker UI/UX- eller faguttrykk kunden sannsynligvis ikke forstår, vises ordet med **stiplet understrek** i kommentarer kunden leser. Ved klikk/trykk får kunden en **AI-generert forklaring** tilpasset konteksten — ikke en generisk ordbok.
+
+**Eksempel:** TRY skriver «Trenger vi eyebrow her?» → *eyebrow* er stiplet → Stine trykker → «Eyebrow er den lille tekstlinjen over overskriften, f.eks. «NYHET» på forsiden du ser på nå.»
+
+**Begrunnelse:** Dig snakker naturlig i fagterminologi. Uten oversettelse føler kunden seg dum eller må spørre på epost — det vi prøver å unngå. Forklaringen skal være kontekstuell (pin, side, screenshot) så den er forståelig for en PM/marketing-rolle, ikke en utvikler.
+
+**Konsekvens:**
+- Gjelder tekst **kunden ser** (TRYs svar, evt. andres svar i tråden) — ikke nødvendigvis det kunden selv skriver.
+- TRY trenger ikke ekstra steg ved sending; deteksjon og markup skjer ved visning (kan forhåndsberegnes når melding sendes).
+- AI får kontekst: prosjekt, side/ramme, pin/DOM, kommentartekst rundt ordet.
+- Visuelt diskret: stiplet linje, ikke vanlig lenke — signaliserer «hjelp», ikke navigasjon.
+
+**Åpent (se `open-questions.md`):** hvilke ord som trigges, språk, caching, og om TRY skal kunne forhåndsdefinere «forklar dette ordet».

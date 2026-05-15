@@ -19,6 +19,7 @@ Mål: ett TRY-team kan opprette et prosjekt, dele en lenke, og samle alle kundek
 - [ ] Onboarding-coach første gang
 - [ ] Returbesøk med "velkommen tilbake"-kort
 - [ ] Anonym deltakelse via localStorage-navn
+- [ ] **Fagord-forklaring:** stiplet understrek på UI/UX-termer i kommentarer kunden leser → klikk → AI-forklaring i kontekst (f.eks. «eyebrow»)
 
 **Ikke i dette laget:**
 - Mobil-prototype-støtte i Figma (Figma håndterer det selv)
