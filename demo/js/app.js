@@ -4,6 +4,7 @@
   const store = window.PekStore;
   const jargon = window.PekJargon;
   let state = store.get();
+  let toastTimer = null;
 
   if (location.hash === "#team") {
     state.role = "team";
@@ -42,12 +43,24 @@
   }
 
   function showToast(msg) {
+    if (toastTimer) clearTimeout(toastTimer);
     set({ toast: msg });
     render();
-    setTimeout(() => {
+    toastTimer = setTimeout(() => {
+      toastTimer = null;
       set({ toast: null });
       render();
     }, 2800);
+  }
+
+  function figmaAspectClass() {
+    const map = { "16:9": "ratio-16-9", "9:16": "ratio-9-16", "4:3": "ratio-4-3" };
+    return map[state.figmaAspect] || "ratio-16-9";
+  }
+
+  function renderToast() {
+    if (!state.toast) return "";
+    return `<div class="pek-toast-global" role="status" aria-live="polite"><i class="ti ti-check"></i> ${esc(state.toast)}</div>`;
   }
 
   function frameLabel(id) {
@@ -243,7 +256,7 @@
     const inner = useEmbed
       ? `<iframe src="${esc(embedSrc)}" title="Figma prototype" loading="lazy" allowfullscreen></iframe>`
       : `<div class="pek-figma-empty"><i class="ti ti-brand-figma"></i><p>Figma er ikke koblet ennå</p><p class="muted">TRY-teamet legger inn prototype-lenken i prosjektinnstillingene.</p></div>`;
-    return `<div class="pek-figma-wrap${state.figmaExplore ? " explore" : ""}" data-surface-click="1">${inner}
+    return `<div class="pek-figma-wrap ${figmaAspectClass()}${state.figmaExplore ? " explore" : ""}" data-surface-click="1">${inner}
       <div class="pek-click-layer"></div>
       <div class="pek-pin-layer">${renderPins()}</div>${renderComposer()}</div>`;
   }
@@ -288,8 +301,7 @@
         <span class="pek-url-bar" title="Kun visning — lim inn Figma-lenke under TRY · Innstillinger">${esc(url)}</span>
       </div>
       ${frameTabs}
-      <div class="pek-viewer-body">${state.activeSurface === "staging" ? renderStagingSurface() : renderFigmaSurface()}</div>
-      ${state.toast ? `<div class="pek-toast" style="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:50"><i class="ti ti-check"></i> ${esc(state.toast)}</div>` : ""}
+      <div class="pek-viewer-body${state.activeSurface === "figma" ? " pek-viewer-body--figma" : ""}">${state.activeSurface === "staging" ? renderStagingSurface() : renderFigmaSurface()}</div>
       <div class="pek-toolbar" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%)">
         <div class="pek-toolbar-pill">${count ? `${count} kommentar${count > 1 ? "er" : ""} her` : "Klikk for å kommentere"}</div>
         ${state.activeSurface === "staging" ? `<div class="pek-device-toggle">
@@ -319,6 +331,12 @@
             <button type="button" data-action="apply-figma-url">Lagre</button>
           </div>
           <p class="pek-figma-paste-hint">Filen må være delbar · «Anyone with the link can view»</p>
+          <p class="pek-setup-label">Visningsformat</p>
+          <div class="pek-aspect-tabs">
+            ${["16:9", "9:16", "4:3"].map((a) =>
+              `<button type="button" data-action="set-figma-aspect" data-aspect="${a}" class="${state.figmaAspect === a ? "active" : ""}">${a}</button>`
+            ).join("")}
+          </div>
           <p class="pek-setup-status ${linked ? "ok" : ""}">${linked ? `<i class="ti ti-check"></i> Koblet til Figma` : "Ikke koblet — kunden ser en tom Figma-flate"}</p>
           ${linked ? `<button type="button" class="pek-setup-link" data-action="clear-figma-url">Fjern lenke</button>` : ""}
         </section>
@@ -447,7 +465,7 @@
     else if (state.screen === "inbox") main = renderInbox(false);
     else if (state.screen === "thread") main = renderThread(false);
     else main = renderViewer();
-    root.innerHTML = renderDemoBar() + main + renderTermPopover();
+    root.innerHTML = renderDemoBar() + main + renderToast() + renderTermPopover();
     bindEvents();
   }
 
@@ -501,8 +519,8 @@
       const input = document.getElementById("pek-figma-url")?.value || "";
       const embed = figmaUrlToEmbed(input);
       if (!embed) {
-        set({ figmaInputUrl: input, toast: "Ugyldig Figma-lenke — bruk design eller proto-URL" });
-        render();
+        set({ figmaInputUrl: input, screen: state.role === "team" ? "team-setup" : state.screen });
+        showToast("Ugyldig Figma-lenke — bruk design eller proto-URL");
         return;
       }
       set({
@@ -510,14 +528,18 @@
         figmaEmbedUrl: embed,
         figmaMode: "embed",
         figmaExplore: false,
-        toast: "Figma-lenke lagret",
         screen: state.role === "team" ? "team-setup" : state.screen,
       });
-      render();
+      showToast("Figma-lenke lagret");
       return;
     }
     if (a === "clear-figma-url") {
-      set({ figmaInputUrl: "", figmaEmbedUrl: "", figmaMode: "mock", toast: "Figma-lenke fjernet" });
+      set({ figmaInputUrl: "", figmaEmbedUrl: "", figmaMode: "mock", screen: "team-setup" });
+      showToast("Figma-lenke fjernet");
+      return;
+    }
+    if (a === "set-figma-aspect") {
+      set({ figmaAspect: el.dataset.aspect, screen: "team-setup" });
       render();
       return;
     }

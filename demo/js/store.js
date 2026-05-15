@@ -15,6 +15,7 @@ window.PekStore = (function () {
       figmaExplore: false,
       figmaInputUrl: "",
       figmaEmbedUrl: "",
+      figmaAspect: "16:9",
       device: "desktop",
       eyebrow: "NYHET",
       threads: [],
